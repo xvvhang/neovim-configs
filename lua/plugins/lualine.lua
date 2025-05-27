@@ -1,0 +1,151 @@
+local LF = {}
+local RT = {}
+
+local buf_icon = {}
+
+local get_buf_icon = function()
+  local filepath = vim.api.nvim_buf_get_name(0)
+  local filename = vim.fn.fnamemodify(filepath, ":t")
+  local extension = vim.fn.fnamemodify(filename, ":e")
+  buf_icon.icon, buf_icon.color = require("nvim-web-devicons").get_icon_color(
+    filename, extension, { default = true }
+  )
+  return buf_icon.icon and buf_icon.icon .. ""
+end
+
+local get_hl_colors = function(hl)
+  return vim.api.nvim_get_hl(0, { name = hl })
+end
+
+local get_is_git_repo = function()
+  local filepath = vim.fn.expand("%:p:h")
+  local gitdir = vim.fn.finddir(".git", filepath .. ";")
+  return gitdir and #gitdir > 0 and #gitdir < #filepath
+end
+
+-- git logo
+table.insert(LF, {
+  function() return " " end,
+  cond = get_is_git_repo,
+  color = function()
+    local icon_colors = get_hl_colors("DevIconGitLogo")
+    return { fg = icon_colors.fg and string.format("#%x", icon_colors.fg) or "" }
+  end,
+  padding = { left = 1, right = -1 }
+})
+
+-- git branch
+table.insert(LF, {
+  "branch",
+  cond = get_is_git_repo,
+  padding = { left = 0, right = 1 }
+})
+
+-- buffer icon
+table.insert(LF, {
+  function() return get_buf_icon() end,
+  color = function()
+    return { fg = buf_icon.color }
+  end,
+  padding = { left = 1, right = 0 }
+})
+
+-- buffer name
+table.insert(LF, {
+  "filename",
+  symbols = {
+    modified = "[M]",
+    readonly = "[R]",
+    unnamed = "[U]",
+    newfile = "[N]"
+  }
+})
+
+-- diff
+table.insert(LF, {
+  "diff",
+  symbols = {
+    added = " ",
+    modified = " ",
+    removed = " ",
+  },
+})
+
+-- diagnostics
+table.insert(LF, {
+  "diagnostics",
+  sources = { "nvim_lsp" },
+  sections = { "error", "warn" },
+  symbols = { error = " ", warn = " " }
+})
+
+-- copilot status
+table.insert(RT, { 'copilot' })
+
+-- lsp status
+-- table.insert(RT, {
+--   'lsp_status',
+--   ignore_lsp = {
+--     'copilot',
+--     'null-ls'
+--   }
+-- })
+
+-- search count
+table.insert(RT, { "searchcount" })
+
+-- selection count
+table.insert(RT, { "selectioncount" })
+
+-- location
+table.insert(RT, { "location" })
+
+-- progress
+table.insert(RT, { "progress" })
+
+-- mode
+table.insert(RT, { "mode" })
+
+return {
+  "nvim-lualine/lualine.nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "AndreM222/copilot-lualine",
+    "f-person/git-blame.nvim",
+  },
+  opts = {
+    options = {
+      icons_enabled = false,
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
+    },
+    sections = {
+      lualine_c = LF,
+      lualine_x = RT,
+      lualine_a = {},
+      lualine_b = {},
+      lualine_y = {},
+      lualine_z = {},
+    }
+  },
+  config = function(_, opts)
+    opts.options.theme = {
+      normal = { c = { bg = vim.g.terminal_color_0 } },
+      inactive = { c = { bg = vim.g.terminal_color_0 } }
+    }
+    -- transparent status bar
+    -- opts.options.theme = {
+    --   normal = { c = { bg = "NONE" } },
+    --   inactive = { c = { bg = "NONE" } }
+    -- }
+
+    table.insert(opts.sections.lualine_x, 1, {
+      require("gitblame").get_current_blame_text,
+      cond = require("gitblame").is_blame_text_available
+    })
+
+    require("lualine").setup(opts)
+    vim.cmd([[highlight link MsgArea lualine_c_normal]])
+  end,
+  lazy = false
+}
