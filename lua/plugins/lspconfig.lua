@@ -32,38 +32,47 @@ return {
     window.default_options.border = "rounded"
     window.default_options.title = true
 
-    vim.lsp.enable('bashls')
-    vim.lsp.enable('css_variables')
-    vim.lsp.enable('css_ls')
-    vim.lsp.enable('dockerls')
-    vim.lsp.enable('emmet_language_server')
+    -- LSP
+    vim.lsp.enable('cssls')
+    vim.lsp.config('emmet_language_server', {
+      filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+    })
     vim.lsp.enable('gopls')
     vim.lsp.enable('html')
     vim.lsp.enable('jsonls')
-    vim.lsp.enable('lua_ls')
-    vim.lsp.enable('rust_analyzer')
-    vim.lsp.enable('tailwindcss')
-    vim.lsp.enable('yamlls')
-
-
-    vim.lsp.config('volar', {
-      init_options = {
-        vue = {
-          hybridMode = false,
-        }
-      }
-    })
-    vim.lsp.config('ts_ls', {
-      init_options = {
-        plugins = {
-          {
-            name = '@vue/typescript-plugin',
-            location = vue_server_path,
-            languages = { 'vue' },
+    vim.lsp.config('lua_ls', {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" }
           }
         }
       }
     })
+    vim.lsp.enable('tailwindcss')
+    vim.lsp.enable('volar')
+    vim.lsp.config('vtsls', {
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+      settings = {
+        vtsls = {
+          tsserver = {
+            globalPlugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vue_server_path,
+                languages = { "vue" },
+                configNamespace = "typescript",
+                enableForWorkspaceTypeScriptVersions = true,
+              }
+            }
+          }
+        }
+      }
+    })
+    vim.lsp.enable('yamlls')
+
+    -- Lint
+    vim.lsp.enable('eslint')
   end,
   event = {
     "BufReadPost",

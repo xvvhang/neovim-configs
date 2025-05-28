@@ -9,6 +9,12 @@ return {
       modified_icon = "",
       left_trunc_marker = "",
       right_trunc_marker = "",
+      name_formatter = function(buf)
+        if buf.name == "" then
+          return buf.path
+        end
+        return buf.name
+      end,
       show_buffer_icons = false,
       show_buffer_close_icons = false,
       show_close_icon = false,

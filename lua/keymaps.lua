@@ -15,6 +15,5 @@ vim.api.nvim_del_keymap("n", "gri")
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "ga", vim.lsp.buf.code_action)
 vim.keymap.set("n", "gn", vim.lsp.buf.rename)
--- vim.keymap.set("n", "gk", function() vim.lsp.buf.hover({ border = "rounded", title = " Hover " }) end)
 vim.keymap.set("n", "gk", vim.lsp.buf.hover)
 
