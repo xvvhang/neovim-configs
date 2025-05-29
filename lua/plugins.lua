@@ -18,6 +18,7 @@ local lazy = require("lazy")
 
 local plugins = {
   require("theme"),
+  require("plugins.nerdy"),
   require("plugins.lualine"),
   require("plugins.bufferline"),
   require("plugins.barbecue"),
