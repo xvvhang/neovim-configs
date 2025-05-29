@@ -2,7 +2,7 @@
   "CopilotChat.nvim": { "branch": "main", "commit": "16d897fd43d07e3b54478ccdb2f8a16e4df4f45a" },
   "barbecue": { "branch": "main", "commit": "cd7e7da622d68136e13721865b4d919efd6325ed" },
   "blink.cmp": { "branch": "main", "commit": "022521a8910a5543b0251b21c9e1a1e989745796" },
-  "blink.compat": { "branch": "main", "commit": "f1836ed7a07f8d082ff6c3fbae1e476ba2adee84" },
+  "blink.compat": { "branch": "main", "commit": "1454f14a8d855a578ceeba77c62538fa1459a67c" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "copilot-lualine": { "branch": "main", "commit": "6bc29ba1fcf8f0f9ba1f0eacec2f178d9be49333" },
   "copilot.lua": { "branch": "master", "commit": "5f726c8e6bbcd7461ee0b870d4e6c8a973b55b64" },
@@ -24,5 +24,5 @@
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "smart-splits.nvim": { "branch": "master", "commit": "5ef94ca23b28148187846fc46f10184aad4d17b0" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
-  "yazi.nvim": { "branch": "main", "commit": "454525c33339881c574c2f35f488a13d0d6a1491" }
+  "yazi.nvim": { "branch": "main", "commit": "59c22d1a8bcb3d00a7115ef7f2d59b90cf989ab3" }
 }

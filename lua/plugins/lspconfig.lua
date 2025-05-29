@@ -50,9 +50,16 @@ return {
       }
     })
     vim.lsp.enable('tailwindcss')
-    vim.lsp.enable('vue_ls')
+    vim.lsp.config('vue_ls', {
+      filetypes = { "vue" },
+      init_options = {
+        vue = {
+          hybridMode = false
+        }
+      }
+    })
     vim.lsp.config('vtsls', {
-      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
       settings = {
         vtsls = {
           tsserver = {
