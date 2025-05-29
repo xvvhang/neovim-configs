@@ -79,7 +79,7 @@ return {
     vim.lsp.enable('yamlls')
 
     -- Lint
-    vim.lsp.enable('eslint')
+    -- vim.lsp.enable('eslint')
   end,
   event = {
     "BufReadPost",
