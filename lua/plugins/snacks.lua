@@ -107,7 +107,7 @@ return {
       }
     }
   },
-  lazy = false,
+  priority = 1000,
   keys = {
     { "<leader>g", function() Snacks.lazygit() end},
     { "<leader>/", function() Snacks.picker() end },
