@@ -9,11 +9,8 @@ return {
       fold = { enable = true }
     })
   end,
-  event = {
-    "BufReadPost",
-    "BufNewFile",
-    "BufWritePre"
-  },
+  priority = 100,
+  lazy = false,
   cmd = {
     "TSInstall",
     "TSUpdate"

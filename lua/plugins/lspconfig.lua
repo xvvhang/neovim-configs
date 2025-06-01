@@ -81,9 +81,6 @@ return {
     -- Lint
     -- vim.lsp.enable('eslint')
   end,
-  event = {
-    "BufReadPost",
-    "BufNewFile",
-    "BufWritePre"
-  }
+  priority = 100,
+  lazy = false
 }
