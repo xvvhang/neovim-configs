@@ -59,7 +59,7 @@ return {
         local icon_colors = get_hl_colors("DevIconGitLogo")
         return { fg = icon_colors.fg and string.format("#%x", icon_colors.fg) or "" }
       end,
-      padding = { left = 1, right = -1 }
+      padding = { left = 0, right = -1 }
     })
 
     -- git branch
@@ -79,7 +79,7 @@ return {
       color = function()
         return { fg = buf_icon.color }
       end,
-      padding = { left = 1, right = 0 }
+      padding = { left = get_is_git_repo and 1 or 0, right = 0 }
     })
 
     -- buffer name
@@ -146,6 +146,8 @@ return {
     -- mode
     table.insert(RT, {
       "mode",
+      color = { fg = vim.g.terminal_color_5 },
+      padding = { left = 1, right = 0}
     })
 
     opts.sections.lualine_c = LF
