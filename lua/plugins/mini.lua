@@ -32,13 +32,6 @@ return {
       }
     })
     require("mini.bufremove").setup()
-    require("mini.diff").setup({
-      mappings = {
-        apply = "gh",
-        reset = "gu"
-      }
-    })
-    require("mini.git").setup()
     require("mini.jump").setup()
     require("mini.jump2d").setup({
       view = {

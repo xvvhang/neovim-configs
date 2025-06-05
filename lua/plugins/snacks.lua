@@ -24,7 +24,7 @@ return {
     picker = {
       prompt = " ",
       layout = {
-        preset = "select"
+        preset = "default"
       },
       icons = {
         files = {

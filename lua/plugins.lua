@@ -25,7 +25,7 @@ local plugins = {
   require("plugins.yazi"),
   require("plugins.mini"),
   require("plugins.snacks"),
-  require("plugins.git-blame"),
+  require("plugins.gitsigns"),
   require("plugins.smart-splits"),
   require("plugins.treesitter"),
   require("plugins.lspconfig"),

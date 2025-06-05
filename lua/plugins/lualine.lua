@@ -2,8 +2,6 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "AndreM222/copilot-lualine",
-    "f-person/git-blame.nvim",
   },
   opts = {
     options = {
@@ -68,6 +66,10 @@ return {
     table.insert(LF, {
       "branch",
       cond = get_is_git_repo,
+      color = function()
+        local icon_colors = get_hl_colors("DevIconGitLogo")
+        return { fg = icon_colors.fg and string.format("#%x", icon_colors.fg) or "" }
+      end,
       padding = { left = 0, right = 1 }
     })
 
@@ -83,6 +85,9 @@ return {
     -- buffer name
     table.insert(LF, {
       "filename",
+      color = function()
+        return { fg = buf_icon.color }
+      end,
       symbols = {
         modified = "[M]",
         readonly = "[R]",
@@ -109,26 +114,39 @@ return {
       symbols = { error = " ", warn = " " }
     })
 
-    -- git blame
-    table.insert(RT, {
-      require("gitblame").get_current_blame_text,
-      cond = require("gitblame").is_blame_text_available
-    })
-
-    -- copilot status
-    table.insert(RT, { 'copilot' })
+    -- TODO copilot status
 
     -- search count
-    table.insert(RT, { "searchcount" })
+    table.insert(RT, {
+      "searchcount",
+      color = function()
+        local color = get_hl_colors("MatchParen")
+        return { fg = color.fg and string.format("#%x", color.fg) or "" }
+      end
+    })
 
     -- selection count
-    table.insert(RT, { "selectioncount" })
+    table.insert(RT, {
+      "selectioncount",
+      color = function()
+        local color = get_hl_colors("MatchParen")
+        return { fg = color.fg and string.format("#%x", color.fg) or "" }
+      end
+    })
 
     -- location
-    table.insert(RT, { "location" })
+    table.insert(RT, {
+      "location",
+      color = function()
+        local color = get_hl_colors("MatchParen")
+        return { fg = color.fg and string.format("#%x", color.fg) or "" }
+      end
+    })
 
     -- mode
-    table.insert(RT, { "mode" })
+    table.insert(RT, {
+      "mode",
+    })
 
     opts.sections.lualine_c = LF
     opts.sections.lualine_x = RT
