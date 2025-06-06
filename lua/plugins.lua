@@ -20,7 +20,6 @@ local plugins = {
   require("theme"),
   require("plugins.nerdy"),
   require("plugins.lualine"),
-  require("plugins.bufferline"),
   require("plugins.barbecue"),
   require("plugins.yazi"),
   require("plugins.mini"),

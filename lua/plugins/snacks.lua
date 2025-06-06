@@ -1,6 +1,7 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    image = {},
     input = {
       icon = " ",
     },
@@ -112,6 +113,7 @@ return {
     { "<leader>g", function() Snacks.lazygit() end},
     { "<leader>/", function() Snacks.picker() end },
     { "<leader>.", function() Snacks.picker.resume() end },
+    { "<leader>b", function() Snacks.picker.buffers() end },
     { "<leader>f", function() Snacks.picker.files() end },
     { "<leader>s", function() Snacks.picker.grep() end },
     { "<leader>h", function() Snacks.picker.git_status() end },
