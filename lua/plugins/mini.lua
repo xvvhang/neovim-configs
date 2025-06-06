@@ -39,6 +39,7 @@ return {
       }
     })
     -- Appearance
+    require("mini.cursorword").setup()
     require("mini.hipatterns").setup({
       highlighters = {
         fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
