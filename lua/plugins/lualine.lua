@@ -143,6 +143,14 @@ return {
       end
     })
 
+    table.insert(RT, {
+      "progress",
+      color = function()
+        local color = get_hl_colors("MatchParen")
+        return { fg = color.fg and string.format("#%x", color.fg) or "" }
+      end
+    })
+
     -- mode
     table.insert(RT, {
       "mode",

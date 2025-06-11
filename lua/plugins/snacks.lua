@@ -5,16 +5,6 @@ return {
     input = {
       icon = " ",
     },
-    notifier = {
-      enabled = true,
-      icons = {
-        error = " ",
-        warn = " ",
-        info = " ",
-        debug = " ",
-        trace = " ",
-      },
-    },
     lazygit = {
       win = {
         style = "float",
